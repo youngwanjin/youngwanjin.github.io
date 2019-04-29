@@ -1,0 +1,56 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#head{
+	position:absolute;
+	top:0px ;
+	height: 4%;
+	width: 100%;
+	text-align: center; 
+}
+#head p{
+	text-align: center;
+}
+#content{
+	position: absolute;
+	top: 4%;
+	bottom: 4%;
+	left: 0;
+	right: 0;
+}
+#content .content_left{
+	position: absolute;
+	left: 0;
+	right: 50%;
+	top: 0;
+	bottom: 0;
+}
+#content .content_left .content_left_into{
+	position: absolute;
+	top: 5%;
+	left: 5%;
+}
+#content .content_left .content_left_into p{
+	margin-bottom:20px ;
+}
+#content .content_right{
+	position: absolute;
+	right: 0;
+	left: 50%;
+	top: 0;
+	bottom: 0;
+}
+#foot{
+	position: absolute;
+	bottom: 0px; 
+	height: 4%;
+	width: 100%; 
+	text-align: center; 
+}
+#foot p{
+	text-align: center;
+}
