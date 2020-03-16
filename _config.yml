@@ -2,7 +2,7 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: https://youngwanjin.github.io/
+url: https://youngwanjin.github.io
 date_format: "ordinal"
 title: W.Young
 subtitle: "努力活成自己."
