@@ -96,14 +96,14 @@ disqus:
 # https://imsun.net/posts/gitment-introduction/
 gitment:
     owner: youngwanjin
-    repo: blog-comments
+    repo: youngwanjin.github.io
     oauth:
         client_id: b06a1ce46c7a5d3624ba
         client_secret: e1a727f6950d491a426812c4197e46575eac40e2
 # https://github.com/gitalk/gitalk#install
 gitalk:
     owner: youngwanjin
-    repo: blog-comments
+    repo: youngwanjin.github.io
     clientID: b06a1ce46c7a5d3624ba
     clientSecret: e1a727f6950d491a426812c4197e46575eac40e2
 # 在使用其它评论组件时可点击显示 Disqus
