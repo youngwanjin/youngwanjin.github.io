@@ -185,16 +185,13 @@ keywords: vim
 ### 10. vim 模式介绍
 
 * 正常模式 (Normal-mode) 
-
 * 插入模式 (Insert-mode)
-
 * 命令模式 (Command-mode)
-
 * 可视模式 (Visual-mode)
 
-  
 
-#### (1). **正常模式** 
+
+#### (1). 正常模式 
 
 启动vim后默认处于正常模式。不论位于什么模式，按下<Esc>键(有时需要按两下）都会进入正常模式
 
