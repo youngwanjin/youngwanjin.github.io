@@ -13,7 +13,7 @@ keywords: OpenStack, Loadbalancer
 
 #### 1. LBaaS V1  
 
-![]( https://github.com/youngwanjin/youngwanjin.github.io/tree/master/images/posts/openstack/LBaaS_V1.png)
+![](https://github.com/youngwanjin/youngwanjin.github.io/tree/master/images/posts/openstack/LBaaS_V1.png)
 
 + **VIP**
 
@@ -35,7 +35,7 @@ keywords: OpenStack, Loadbalancer
 
 #### 2. LBaaS V2
 
-![]( https://github.com/youngwanjin/youngwanjin.github.io/tree/master/images/posts/openstack/LBaaS_V2.png)
+![](https://github.com/youngwanjin/youngwanjin.github.io/tree/master/images/posts/openstack/LBaaS_V2.png)
 
 + **Load Balancer**:  负载均衡服务的 root source ，同时也是VIP关联的逻辑对象。一个LB可以拥有一个或多个VIP，VIP可以是Neutron Subnet 的一个Port，并从subnet 中分配 IP。
 + **Listener**:  用于监听客户端对 LB（VIP）的访问请求，监听项为 HTTP/HTTPS、TCP协议的元素，但是不监听IP地址。只有符合监听规则的访问请求才会被转发到与Listener关联的Pool中。一个LB可有多个Listener，一个 Listener 也可以关联多个 Pool。
