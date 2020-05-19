@@ -47,7 +47,39 @@ keywords: OpenStack, Loadbalancer
 
 
 
+#### 负载均衡器分类
+
++ **第4层负载均衡器**
+
+  基于网络和传输层协议（IP、TCP、FTP、UDP）来实现负载均衡。
+
++ **第7层负载均衡**
+
+  基于应用层协议（HTTP、SMTP、FTP、Telnet）来实现负载均衡。对于HTTP来说，第7层的负载均衡器能根据应用层的特定数据比如HTTP头，cookies或者应用消息中的数据来进一步做请求分发。
+
+  
+
+#### 负载分发算法
+
++ **轮询（ Round robin ）**： 轮流分发到各个（ACTIVE）服务器。
++ **加权轮询（ Weighted round robin ）**：每个服务器都是有一定的加权（weight），轮询时考虑加权值。
++ **最少连接（ Least connections ）**：转发到有最少连接数的服务器。
++ **最少响应时间（ Least response time ）**：转发到响应时间最短的服务器。
+
+
+
+#### 可靠性和可用性
+
+负载均衡器通过监控应用的健康状况来确保可靠性和可用性，并且只转发请求到
+
+
+
+
+
 ----
+
+学习记录，如有冒犯，及时指正。
 
 + [Ref1]( https://www.ibm.com/developerworks/cn/cloud/library/1506_xiaohh_openstacklb/index.html )
 + [Ref2]( https://docs.openstack.org/mitaka/networking-guide/config-lbaas.html )
++ [Ref3](http://luckylau.tech/2017/03/07/Openstack负载均衡LoadBalancerv2/) 
