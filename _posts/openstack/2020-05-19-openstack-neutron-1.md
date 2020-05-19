@@ -15,7 +15,7 @@ keywords: OpenStack, Neutron
 
 #### 1. 概述
 
-![6194d4c14cbd2f0925b48791ba7af88d.png](en-resource://database/951:1)
+![](https://github.com/youngwanjin/youngwanjin.github.io/blob/master/images/posts/openstack/neutron-common.png)
 
 - **Neutron Server** ： 对外提供OpenStack网络的API，接收请求，并调用Plugin处理请求。
 - **Plugin**：处理 Neutron Server 发来的请求，维护 OpenStack 逻辑网络的状态，并调用 Agent 处理请求。
@@ -30,7 +30,7 @@ keywords: OpenStack, Neutron
 
 #### 1. Neutron Server
 
-![618919de9092fbd3a7749002b6b78b26.png](en-resource://database/953:1)
+![](https://github.com/youngwanjin/youngwanjin.github.io/blob/master/images/posts/openstack/neutron-server.png)
 
 + **Core API** : 对外提供管理 network、subnet、port 的TESTful API
 + **Extension API** ： 对外提供router、load balancer、firewall 等资源的RESful API
@@ -43,5 +43,5 @@ keywords: OpenStack, Neutron
 
 #### 2. 架构展开
 
-![4f271ff4f7a534703800b04fbd34e25e.png](en-resource://database/957:0)
+![](https://github.com/youngwanjin/youngwanjin.github.io/blob/master/images/posts/openstack/neutron-extend.png)
 
