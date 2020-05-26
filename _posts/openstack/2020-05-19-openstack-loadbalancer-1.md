@@ -7,11 +7,11 @@ keywords: OpenStack, Loadbalancer
 
 ---
 
-### 1. Neutron LBaaS基本概念
+### Neutron LBaaS基本概念
 
 **负载均衡**是将来访的网络流量在运行相同应用的多个服务器之间进行分发的一种核心网络服务。其功能有负载均衡器提供，负载均衡器可以是**硬件设备**也可以由**软件实现**。它充当反向代理，在多个服务器之间分发网络或者应用流量。常用来增加应用的访问容量（并发用户数）和可靠性，它也会通过降低服务器的负载来提高应用的总体性能。
 
-#### 1. LBaaS V1  
+#### LBaaS V1  
 
 ![](https://github.com/youngwanjin/youngwanjin.github.io/blob/master/images/posts/openstack/lbaas-v1.png)
 
@@ -33,7 +33,7 @@ keywords: OpenStack, Loadbalancer
 
   Hm 在 Neutron 的负载均衡服务中不是必须的，即：没有Hm，也可以组成一个负载均衡池，只是没有hm的检查pool会一直认为所有的member都是ACTIVE 状态，这样member会一直出现在VIP的分发列表中，这样会造成负载均衡的响应异常。
 
-#### 2. LBaaS V2
+#### LBaaS V2
 
 ![](https://github.com/youngwanjin/youngwanjin.github.io/blob/master/images/posts/openstack/lbaas-v2.png)
 
@@ -70,7 +70,26 @@ keywords: OpenStack, Loadbalancer
 
 #### 可靠性和可用性
 
-负载均衡器通过监控应用的健康状况来确保可靠性和可用性，并且只转发请求到
+负载均衡器通过监控应用的健康状况来确保可靠性和可用性，并且只转发请求到能够及时做出响应的服务和应用（member）。
+
+
+
+#### 会话保持（ Session Persistence ）
+
+用户（浏览器）在和服务器交互时，通常会在本地保存一些信息，而整个过程称之为一个会话（Session）并用唯一的Session ID 进行标识。因为HTTP协议是无状态的，所以任何需要上下文逻辑的情形都必须使用会话机制，HTTP客户端也会额外缓存一些数据在本地，可以减少请求，从而提高性能。负载均衡可能将不同的请求转发到不同的后端，这样会影响性能，所以就需要将同一个会话的请求都转到相同的后端。
+
+会话保持 表示在一个会话期间，转发一个用户的请求到同一个后端服务器，
+
++ 会话保持方法
+  + Source IP：相同来源的请求转发到同一后端服务器。
+  + HTTP Cookie：该模式下，loadbalancer为客户端的第一次连接生成cookie，后续携带该Cookie的请求会被同一个member处理。
+  + APP Cookie：该模式下，依靠后端应用服务器生成的cookie决定被某个member处理。
+
+
+
+### 负载均衡实现方法
+
+
 
 
 
