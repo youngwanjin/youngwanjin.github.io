@@ -17,15 +17,16 @@ keywords: OpenStack, Neutron
 
 ![](/images/posts/openstack/neutron-common.png)
 
-- **Neutron Server** ： 对外提供OpenStack网络的API，接收请求，并调用Plugin处理请求。
-- **Plugin**：处理 Neutron Server 发来的请求，维护 OpenStack 逻辑网络的状态，并调用 Agent 处理请求。
+- **Neutron Server** ： 对外提供OpenStack网络的API，接收请求，并调用Plugin处理请求
+- **Plugin**：处理 Neutron Server 发来的请求，维护 OpenStack 逻辑网络的状态，并调用 Agent 处理请求
 
-+ **Agent**：处理 Plugin 的请求，负责在 network provider 上真正的实现各种网络功能。
-
++ **Agent**：处理 Plugin 的请求，负责在 network provider 上真正的实现各种网络功能
+  + OVS agent （实现网络二层功能）
+  + L3 agent （提供网络三层功能，基础 L3 仅提供路由以及nat转发、扩展包括vpn，fw）
+  + DHCP agent
+  + metering （实现流量统计，可以统计通过 fip 的流量以及字节）
 + **network provider**：提供网络服务的虚拟或物理的网络设备。如：Linux Bridge，Open vSwitch 或 其他物理交换机。
-
 + **Queue**： Neutron Server、Plugin、Agent 之间使用mq通信和调用。
-
 + **Database**： 用来存放OPenStack的网络状态信息，包括network、subnet、port、router
 
 #### 1. Neutron Server
