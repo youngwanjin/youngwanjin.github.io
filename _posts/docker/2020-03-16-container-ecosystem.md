@@ -1,12 +1,12 @@
 ---
 layout: post
 title: 容器生态系统
-categories: Docker
+categories: [Docker]
 description: 每天5分钟玩转Docker容器技术 - 容器生态系统
-keywords: docker
+keywords: Docker
 ---
 
-### 0. 容器生态系统包含：
+### 容器生态系统包含：
 
 * 容器核心技术
 
@@ -239,8 +239,4 @@ runtime 是容器真正运行的地方，runtime 需要跟操作系统的 kernel
 * OpenSCAP
 
 > OpenSCAP 能够对容器镜像进行扫描，发现潜在漏洞
-
-
-
----
 
