@@ -2,7 +2,7 @@
 layout: post
 title: OpenStack Neutron Server 启动过程
 categories: [OpenStack, Neutron]
-description:neutron server 启动 路由 创建 network 流程
+description: neutron server 启动 url路由 创建 network 流程
 keywords: OpenStack, Neutron
 ---
 
