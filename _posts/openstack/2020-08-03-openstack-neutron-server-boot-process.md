@@ -446,6 +446,7 @@ def plugin_aware_extension_middleware_factory(global_config, **local_config):
 paste.app_factory -->  neutron\api\v2\router.py : 
 
 ```python
+{% raw %}
 class APIRouter(base_wsgi.Router):
 
     @classmethod
@@ -505,6 +506,8 @@ class APIRouter(base_wsgi.Router):
         # re-initialize with all of the required data in place.
         policy.reset()
         super(APIRouter, self).__init__(mapper)
+        
+{% endraw %}
 ```
 
 可以看到如果配置文件使用 `pecan` 则会使用 `v2_factory()` 函数，即：pecan 库来实现 application 的路由，默认则会使用 `routers` 库实现具体的 applicatiion 进行路由 ，`pecan` 暂时先不看，对于如何使用 `routers` 进行路由需要看 `__init__()` 中具体是如何实现的
