@@ -582,7 +582,7 @@ app = obj(environ, start_response) ，obj 是一个 Versions 对象
 
 
 
-#### 4. 创建 network  流程
+### 4. 创建 network  流程
 
 上面讲到会根据不同的 URL 动态的创建 controller ，具体的创建由 `Resource` 实现
 
