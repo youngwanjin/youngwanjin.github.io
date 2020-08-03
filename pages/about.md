@@ -28,3 +28,4 @@ permalink: /about/
 {% endfor %}
 </div>
 {% endfor %}
+
