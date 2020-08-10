@@ -8,7 +8,9 @@ keywords: OpenStack
 
 > openstack 版本： train
 
- ### 环境准备
+
+
+### 环境准备
 
 | 节点       | 系统     | ip            | 描述     |
 | ---------- | -------- | ------------- | -------- |
@@ -1701,7 +1703,7 @@ password = NEUTRON_PASS
 [root@compute ~]# systemctl start neutron-linuxbridge-agent.service
 ```
 
-> 使用 ps -elf | grep nuetron 查看服务
+> 使用 `ps -elf | grep nuetron` 查看服务
 >
 > controller ： neutron-server、neutron-linuxbridge-agent、l3-agent、neutron-dhcp-agent、neutron-metadata-agent
 >
