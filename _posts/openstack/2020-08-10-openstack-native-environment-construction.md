@@ -6,6 +6,8 @@ description: opensatck 环境搭建
 keywords: OpenStack
 ---
 
+# 原生 OpenStack 环境搭建
+
 > openstack 版本： train
 
 
