@@ -21,7 +21,7 @@ keywords: OpenStack
 
 
 
-1. 关闭防火墙 + 关闭 selinux
+**1. 关闭防火墙 + 关闭 selinux:**
 
 ```shell
 # systemctl stop firewalld.service
@@ -30,7 +30,7 @@ keywords: OpenStack
 
 
 
-2. 配置节点网络信息：
+**2. 配置节点网络信息：**
 
 > centos ： 
 >
@@ -54,7 +54,7 @@ keywords: OpenStack
 
 
 
-3. 修改节点主机名称解析：
+**3. 修改节点主机名称解析：**
 
 ```shell
 # hostnamectl set-hostname controller  	 # controller节点
@@ -70,7 +70,7 @@ keywords: OpenStack
 
 
 
-4. NTP 同步系统时间
+**4. NTP 同步系统时间:**
 
 ```shell
 # 1. 虚拟机可以上网
@@ -91,7 +91,7 @@ keywords: OpenStack
 下载安装源码包：
 
 ```shell
-1. yum install centos-release-openstack-train # 所有节点都需要安装
+yum install centos-release-openstack-train # 所有节点都需要安装
 ```
 
 升级软件包：
@@ -267,7 +267,7 @@ ETCD_INITIAL_CLUSTER_STATE="new"
 
 keystone 只需要在 controller 节点安装
 
-1. 创建 keystone 数据库
+**1. 创建 keystone 数据库**
 
 ```shell
 # mysql -u root -p
@@ -281,13 +281,15 @@ MariaDB [(none)]> GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' \
     -> IDENTIFIED BY 'keystone123'; # 授予 keystone 适当的权限
 ```
 
-2. 安装 rpm 包：
+**2. 安装 rpm 包：**
 
 ```shell
 # yum install openstack-keystone httpd mod_wsgi -y
 ```
 
-3. 配置 ` /etc/keystone/keystone.conf ` 
+**3. 修改配置：**
+
+ ` /etc/keystone/keystone.conf ` 
 
 database :
 
@@ -306,20 +308,20 @@ token:
 provider = fernet
 ```
 
-4. 加载 keystone 数据库 schema 
+**4. 加载 keystone 数据库 schema** 
 
 ```shell
 su -s /bin/sh -c "keystone-manage db_sync" keystone
 ```
 
-5. 初始化密钥存储库：
+**5. 初始化密钥存储库：**
 
 ```shell
 # keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone
 # keystone-manage credential_setup --keystone-user keystone --keystone-group keystone
 ```
 
-6. 启动 keystone 服务：
+**6. 启动 keystone 服务：**
 
 ```shell
 keystone-manage bootstrap --bootstrap-password ADMIN_PASS \
@@ -331,7 +333,7 @@ keystone-manage bootstrap --bootstrap-password ADMIN_PASS \
 
 > ADMIN_PASS 换成具体的密码：keystone123
 
-7. 配置 Apache http 服务：
+**7. 配置 Apache http 服务：**
 
 配置 ` /etc/httpd/conf/httpd.conf` 
 
@@ -341,20 +343,20 @@ ServerName controller
 
 > ServerName : 控制节点 name ，如果没有配置需要添加 
 
-8. 创建 `/usr/share/keystone/wsgi-keystone.conf` 的软连接
+**8. 创建 `/usr/share/keystone/wsgi-keystone.conf` 的软连接**
 
 ```shell
 ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/
 ```
 
-9. 启动 http 服务：
+**9. 启动 http 服务：**
 
 ```shell
 systemctl enable httpd.service
 systemctl start httpd.service
 ```
 
-10. 设置环境变量来管理配置账户：
+**10 设置环境变量来管理配置账户：**
 
 ```shell
 $ export OS_USERNAME=admin
@@ -368,7 +370,7 @@ $ export OS_IDENTITY_API_VERSION=3
 
 > ADMIN_PASS : 是第 6 步设置的密码： keystone123
 
-11. 创建 domain, projects, users, and roles
+**11. 创建 domain, projects, users, and roles**
 
 domain:
 
@@ -467,7 +469,7 @@ role:
 [root@controller ~]# openstack role add --project myproject --user myuser myrole
 ```
 
-12. 验证 keystone 服务
+**12验证 keystone 服务**
 
 取消设置临时 `OS_AUTH_URL` 和 `OS_PASSWORD` 环境变量:
 
@@ -513,7 +515,7 @@ Password:
 
 > Password : 用户密码 default
 
-13.  设置 source 文件
+**13. 设置 source 文件**
 
  admin-openrc.sh
 
@@ -545,7 +547,7 @@ export OS_IMAGE_API_VERSION=2
 
 > DEMO_PASS : 用户密码 default
 
-14.  使用 scripts ，获取 token
+**14. 使用 scripts ，获取 token**
 
 ```shell
 [root@controller ~]# source admin-openrc.sh
@@ -564,7 +566,7 @@ export OS_IMAGE_API_VERSION=2
 
 ### 安装 placement
 
-1. 配置数据库：
+**1. 配置数据库：**
 
 ```shell
 [root@controller ~]# mysql -u root -p
@@ -579,13 +581,13 @@ MariaDB [(none)]> GRANT ALL PRIVILEGES ON placement.* TO 'placement'@'%' \
 
 > PLACEMENT_DBPASS :  placement 密码 ： placement123
 
-2. 执行配置文件脚本：
+**2. 执行配置文件脚本：**
 
 ```shell
 [root@controller ~]# source admin-openrc.sh
 ```
 
-3. 创建 user 并配置 keystone endpoint：
+**3. 创建 user 并配置 keystone endpoint：**
 
  Create a Placement service user using your chosen `PLACEMENT_PASS`: 
 
@@ -680,13 +682,15 @@ Repeat User Password:
 
 ```
 
-4. 安装 rpm 包：
+**4. 安装 rpm 包：**
 
 ```shell
 [root@controller ~]# yum install openstack-placement-api -y
 ```
 
-5. 修改配置文件 ` /etc/placement/placement.conf ` :
+**5. 修改配置文件 **
+
+` /etc/placement/placement.conf ` :
 
  In the `[placement_database]` section, configure database access: 
 
@@ -719,13 +723,13 @@ password = PLACEMENT_PASS
 
 > PLACEMENT_PASS : placement 服务密码
 
-6.  Populate the `placement` database: 
+**6. 创建数据库(表): **
 
 ```shell
 [root@controller ~]# su -s /bin/sh -c "placement-manage db sync" placement
 ```
 
-7. 重启 httpd 服务：
+**7. 重启 httpd 服务：**
 
 ```shell
 [root@controller ~]# systemctl restart httpd
@@ -737,7 +741,7 @@ password = PLACEMENT_PASS
 
 #### 控制节点
 
-1. 配置数据库 ：
+**1. 配置数据库 ：**
 
 ```shell
 [root@controller ~]# mysql -u root -p
@@ -769,13 +773,13 @@ MariaDB [(none)]> GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' \
 
 > NOVA_DBPASS : nova 数据库密码 ： nova123
 
-2. 执行 source 脚本：
+**2. 执行 source 脚本：**
 
 ```shell
 source admin-openrc.sh
 ```
 
-3. 创建 nova 用户信息：
+**3. 创建 nova 用户信息：**
 
  Create the `nova` user: 
 
@@ -818,7 +822,7 @@ Repeat User Password:
 +-------------+----------------------------------+
 ```
 
-4. 在 keystone 创建 endpoint ：
+**4. 在 keystone 创建 endpoint ：**
 
 ```shell
 [root@controller ~]# openstack endpoint create --region RegionOne compute public http://controller:8774/v2.1
@@ -868,13 +872,15 @@ Repeat User Password:
 
 ```
 
-5. 安装 rpm 包：
+**5. 安装 rpm 包：**
 
 ```shell
 [root@controller ~]# yum install openstack-nova-api openstack-nova-conductor openstack-nova-novncproxy openstack-nova-scheduler 
 ```
 
-6. 配置 ` /etc/nova/nova.conf `
+**6. 修改配置文件：**
+
+ ` /etc/nova/nova.conf `
 
  In the `[DEFAULT]` section, enable only the compute and metadata APIs: 
 
@@ -945,7 +951,7 @@ use_neutron = true
 firewall_driver = nova.virt.firewall.NoopFirewallDriver
 ```
 
-7.  创建数据库：
+**7. 创建数据库（表）：**
 
 ```shell
 # Populate the nova-api database
@@ -979,7 +985,7 @@ f3960e56-3c9b-4482-996e-022704456a69
 +-------+--------------------------------------+------------------------------------+-------------------------------------------------+----------+
 ```
 
-8. 验证并启动相关服务：
+**8. 验证并启动相关服务：**
 
 ```shell
 # systemctl enable openstack-nova-api.service openstack-nova-consoleauth openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service 
@@ -1003,13 +1009,15 @@ f3960e56-3c9b-4482-996e-022704456a69
 
 #### 计算节点
 
-1. 安装软件包 ： 
+**1. 安装软件包 ：** 
 
 ```shell
 [root@compute ~]# yum install openstack-nova-compute -y 
 ```
 
-2. 修改配置文件 ` /etc/nova/nova.conf` :
+**2. 修改配置文件**
+
+ ` /etc/nova/nova.conf` :
 
  In the `[DEFAULT]` section, enable only the compute and metadata APIs: 
 
@@ -1110,7 +1118,7 @@ password = PLACEMENT_PASS
 
 > PLACEMENT_PASS : placement 密码 ： placement123
 
-3.  确定计算节点是否支持虚拟机的硬件加速：：
+**3. 确定计算节点是否支持虚拟机的硬件加速：**
 
 ```shell
 [root@compute ~]# egrep -c '(vmx|svm)' /proc/cpuinfo
@@ -1127,14 +1135,14 @@ password = PLACEMENT_PASS
 > virt_type = qemu
 > ```
 
-4. 启动服务：
+**4. 启动服务：**
 
 ```shell
 [root@compute ~]# systemctl enable libvirtd.service openstack-nova-compute.service
 [root@compute ~]# systemctl start libvirtd.service openstack-nova-compute.service
 ```
 
-5. Add the compute node to the cell database
+**5. Add the compute node to the cell database**
 
 **以下命令在 controller 节点执行**
 
@@ -1175,7 +1183,7 @@ Found 1 unmapped computes in cell: f3960e56-3c9b-4482-996e-022704456a69
 
 #### 控制节点
 
-1. 配置 mysql 数据库
+**1. 配置 mysql 数据库**
 
 ```shell
 [root@controller ~]# mysql -u root -p
@@ -1191,7 +1199,7 @@ MariaDB [(none)]> GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' \
 
 > NEUTRON_DBPASS : neutron 数据库密码 ： neutron123 
 
-2. 在 keystone 创建 neutron 角色
+**2. 在 keystone 创建 neutron 角色**
 
 ```shell
 [root@controller ~]# source admin-openrc.sh
@@ -1238,7 +1246,7 @@ Add the admin role to the neutron user:
 +-------------+----------------------------------+
 ```
 
-3. 在 keystone 创建   Networking service API endpoints 
+**3. 在 keystone 创建**   Networking service API endpoints 
 
 ```shell
 [root@controller ~]# openstack endpoint create --region RegionOne network public http://controller:9696
@@ -1288,7 +1296,7 @@ Add the admin role to the neutron user:
 
 ```
 
-4. 配置网络选项：（两种方式任选其一）
+**4. 配置网络选项：**（两种方式任选其一）
 
 安装软件包：
 
@@ -1510,7 +1518,7 @@ dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
 enable_isolated_metadata = true
 ```
 
-5. 配置 metadata agent：
+**5.配置 metadata agent：**
 
 ` /etc/neutron/metadata_agent.ini `
 
@@ -1522,7 +1530,7 @@ metadata_proxy_shared_secret = METADATA_SECRET
 
 > METADATA_SECRET : metadata  密码：  metadata 
 
-6. 配置 nova 服务使用 networking 服务：
+**6. 配置 nova 服务使用 networking 服务：**
 
 ` /etc/nova/nova.conf `
 
@@ -1545,25 +1553,27 @@ metadata_proxy_shared_secret = METADATA_SECRET
 
 >  NEUTRON_PASS : neutron 服务密钥： neutron123 ，METADATA_SECRET：metadata 密钥 ： metadata
 
-7. 建立 `  /etc/neutron/plugins/ml2/ml2_conf.ini ` 到  `/etc/neutron/plugin.ini` 的软连接：
+**7. 建立软链接**
+
+ `  /etc/neutron/plugins/ml2/ml2_conf.ini ` 到  `/etc/neutron/plugin.ini` 的软连接：
 
 ```shell
 [root@controller ~]# ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini
 ```
 
-8. 执行脚本建立数据表：
+**8. 执行脚本建立数据表：**
 
 ```shell
 [root@controller ~]# su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
 ```
 
-9. 重启 nova api 服务：
+**9. 重启 nova api 服务：**
 
 ```shell
 [root@controller ~]# systemctl restart openstack-nova-api.service
 ```
 
-10. 启动 neutron 相关服务：
+**10. 启动 neutron 相关服务：**
 
 ```shell
 [root@controller ~]# systemctl enable neutron-server.service neutron-linuxbridge-agent.service neutron-dhcp-agent.service neutron-metadata-agent.service
@@ -1582,13 +1592,15 @@ L3 服务需要启动 L3 Agent ：
 
 #### 计算节点
 
-1. 安装 linux-bridge 软件包：
+**1. 安装 linux-bridge 软件包：**
 
 ```shell
 [root@compute ~]# yum install openstack-neutron-linuxbridge ebtables ipset -y
 ```
 
-2. 修改配置文件 `/etc/neutron/neutron.conf`：
+**2. 修改配置文件**
+
+ `/etc/neutron/neutron.conf`：
 
 在配置文件中注释掉  **[database]**  因为计算节点不会直接访问数据库
 
@@ -1632,7 +1644,7 @@ password = NEUTRON_PASS
 lock_path = /var/lib/neutron/tmp
 ```
 
-3. 配置网络选项：
+**3. 配置网络选项：**
 
 `/etc/neutron/plugins/ml2/linuxbridge_agent.ini`
 
@@ -1672,7 +1684,7 @@ net.bridge.bridge-nf-call-iptables
 net.bridge.bridge-nf-call-ip6tables
 ```
 
-4. 修改nova 配置文件：
+**4. 修改nova 配置文件：**
 
 /etc/nova/nova.conf 
 
@@ -1692,13 +1704,13 @@ password = NEUTRON_PASS
 
 > NEUTRON_PASS : neutron 密钥 ： neutron123
 
-5. 重启 nova compute 服务：
+**5. 重启 nova compute 服务：**
 
 ```shell
 [root@compute ~]# systemctl restart openstack-nova-compute.service
 ```
 
-6. 启动 linux bridge 服务：
+**6. 启动 linux bridge 服务：**
 
 ```shell
 [root@compute ~]# systemctl enable neutron-linuxbridge-agent.service
@@ -1713,9 +1725,7 @@ password = NEUTRON_PASS
 
 
 
-
-
-
+----------------------------------------
 
 
 
