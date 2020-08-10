@@ -688,7 +688,7 @@ Repeat User Password:
 [root@controller ~]# yum install openstack-placement-api -y
 ```
 
-**5. 修改配置文件 **
+**5. 修改配置文件**
 
 ` /etc/placement/placement.conf ` :
 
@@ -723,7 +723,7 @@ password = PLACEMENT_PASS
 
 > PLACEMENT_PASS : placement 服务密码
 
-**6. 创建数据库(表): **
+**6. 创建数据库(表):**
 
 ```shell
 [root@controller ~]# su -s /bin/sh -c "placement-manage db sync" placement
