@@ -1,4 +1,10 @@
-# openstack neutron 错误
+---
+layout: post
+title: openstack neutron 错误
+categories: [OpenStack, Neutron]
+description: neutron 常见错误
+keywords: OpenStack, Neutron
+---
 
 ### 创建 network 失败
 
