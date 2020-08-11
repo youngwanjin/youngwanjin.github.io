@@ -10,7 +10,7 @@ keywords: Linux, Network
 
 ### route 命令
 
-1. 添加路由
+添加路由:
 
 ```shell
 route add -net 192.168.0.0/24 gw 192.168.0.1
@@ -18,7 +18,7 @@ route add -net 192.168.0.0/24 gw 192.168.0.1
 route add -host 192.168.1.1 dev 192.168.0.1
 ```
 
-2. 删除路由
+删除路由:
 
 ```shell
 route del -net 192.168.0.0/24 gw 192.168.0.1
@@ -33,20 +33,20 @@ route del -net 192.168.0.0/24 gw 192.168.0.1
 > 7. **target** ：目的网络或主机
 > 8. **netmask**： 目的地址的网络掩码 
 
-3. 添加默认路由
+添加默认路由:
 
 ```shell
 route add default gw 192.168.0.1
 ```
 
-> 1. **route -n ** 查看路由表
+> 1. **route -n** 查看路由表
 > 2. **route --help** 查看命令帮助
 
 
 
 ### ip route 命令
 
-1. 添加路由
+添加路由:
 
 ```shell
 ip route add 192.168.0.0/24 via 192.168.0.1
@@ -54,7 +54,7 @@ ip route add 192.168.0.0/24 via 192.168.0.1
 ip route add 192.168.0.0/24 dev 192.168.0.1
 ```
 
-2. 删除路由
+删除路由:
 
 ```shell
 ip route del 192.168.0.0/24 via 192.168.0.1
@@ -65,7 +65,7 @@ ip route del 192.168.0.0/24 via 192.168.0.1
 > 3. **via** 网关出口，ip 地址
 > 4. **dev** 网关出口，物理设备名
 
-3. 添加默认路由
+添加默认路由:
 
 ```shell
 ip route add default via 192.168.0.1 dev eth0
@@ -79,7 +79,7 @@ ip route add default via 192.168.0.1 dev eth0
 
 ## 永久路由
 
-1.  在`/etc/rc.local`里添加
+在`/etc/rc.local`里添加:
 
 ```shell
 route add -net 192.168.0.0/24 dev eth0
@@ -87,7 +87,7 @@ route add -net 192.168.0.0/24 dev eth0
 route add -net 192.168.1.0/24 gw 192.168.1.254
 ```
 
-2. 在 ` /etc/sysconfig/static-routes ` 离添加
+在 ` /etc/sysconfig/static-routes ` 离添加:
 
 ```shell
 # 没有static-routes,可以手动建立一个这样的文件
@@ -96,7 +96,7 @@ any net 192.168.0.0/24 gw 192.168.0.1
 any net 10.250.228.128 netmask 255.255.255.192 gw 10.250.228.129
 ```
 
-3. 开启 ip 转发
+开启 ip 转发:
 
 ```shell
 # 临时
