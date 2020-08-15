@@ -1797,3 +1797,9 @@ password = NEUTRON_PASS
 [root@compute ~]# systemctl start neutron-openvswitch-agent.service
 ```
 
+
+
+[Reference1>>]( https://docs.openstack.org/install-guide/openstack-services.html#minimal-deployment-for-pike )
+
+---------
+
