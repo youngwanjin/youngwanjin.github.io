@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 原生 OpenStack 环境搭建
+title: 原生 OpenStack 环境搭建(Train)
 categories: [OpenStack]
 description: opensatck 环境搭建
 keywords: OpenStack

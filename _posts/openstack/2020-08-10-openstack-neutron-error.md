@@ -121,3 +121,15 @@ vni_ranges = 10001:65535
 [root@controller ~]# systemctl restart neutron-server.service
 ```
 
+
+
+### neutron-agent-list 没有 nova 上的 agent
+
+查看 ovs 日志
+
+```shell
+[root@compute ~]# vim /var/log/openvswitch/ovs-vswitchd.log
+```
+
+问题解决：在 ovs 配置文件中配置了 ovs 网桥信息，但是在 compute 节点没有创建对应的网桥,创建对应的 ovs 网桥
+
