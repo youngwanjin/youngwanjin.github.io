@@ -1,3 +1,11 @@
+---
+layout: post
+title: ovs网桥关联网卡
+categories: [Openstack]
+description: some word here
+keywords: Openstack
+---
+
 # ovs网桥关联网卡
 
 ### 不组bond
