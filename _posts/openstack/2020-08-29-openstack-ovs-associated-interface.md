@@ -1,9 +1,9 @@
 ---
 layout: post
 title: ovs网桥关联网卡
-categories: [Openstack]
+categories: [OpenStack]
 description: some word here
-keywords: Openstack
+keywords: OpenStack
 ---
 
 # ovs网桥关联网卡
