@@ -75,10 +75,15 @@ keywords: xshell
 ### 其他操作
 
 **ctrl + s**：锁住终端
+
 **ctrl + q**：解锁终端
+
 **ctrl + l**：清屏，相当于命令clear
+
 **ctrl + c**：另起一行
+
 **ctrl + i**：类似TAB健补全功能
+
 **ctrl + o**：重复执行命令
 
 
@@ -88,24 +93,34 @@ keywords: xshell
 linux 常见快捷键：
 
 **Ctrl + D**： 退出当用户
+
 **Ctrl + Shift + r**：重新登录前一个用户
+
 **Ctrl + l**：清屏，
+
 **clear**：清屏
+
 **logout**：退出当前用户
+
 **ctrl + c**：终止当前操作
+
 **tab**：用于自动补全命令/文件名/目录名
 
 shell 常用快捷键：
 
-**ctrl+tab**：切换页面
+**ctrl + tab**：切换页面
+
 **ctrl + p**：返回上一次输入命令字符
+
 **alt + p**：输入字符查找与字符相接近的历史命令
+
 **ctrl + insert**：复制选中内容
+
 **shift + insert**：粘贴
+
 **home**：光标移到命令行行首
+
 **end**：光标移到命令行行尾
-**ctrl + s**：锁住终端
-**ctrl + q**：解锁终端
 
 
 
