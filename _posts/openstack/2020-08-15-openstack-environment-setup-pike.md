@@ -117,7 +117,7 @@ allow 102.168.0.0/16
 
 ##### compute 节点
 
- ###### 安装软件包
+###### 安装软件包
 
 ```shell
 [root@compute ~]# yum install chrony -y
