@@ -20,7 +20,7 @@ keywords: Kubernetes
 
 ## FA&Q
 
-由于 `k8s`  `1.24` 版本不支持使用 `docker`  作为容器运行时
+由于 `k8s`  `1.24` 版本不支持使用 `docker`  作为容器运行时，所以需要安装 `containerd` 
 
 ```shell
 1. 错误日志
