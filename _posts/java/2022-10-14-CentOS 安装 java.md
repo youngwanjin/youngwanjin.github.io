@@ -40,13 +40,17 @@ keywords: JAVA
 # java -version  /  java  /  javac 
 ```
 
-> 查看 java 路径：`find / -name 'java'` 
+> 查看 java 路径：`find / -name java` 
 >
 > 默认安装路径：`/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.345.b01-1.el7_9.x86_64/jre/bin/java` 
 >
 > 参考文档：https://timberkito.com/?p=12 
 
 ## 从 Oracle 获取安装包手动安装
+
+[Reference >>](https://timberkito.com/?p=12 ) 
+
+
 
 
 
