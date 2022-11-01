@@ -2,13 +2,13 @@
 layout: post
 title: 容器生态系统
 categories: [Docker]
-description: 每天5分钟玩转Docker容器技术 - 容器生态系统
+description: None
 keywords: Docker
 ---
 
-# 容器生态系统包含
+# 容器生态系统
 
-* 容器核心技术
++ 容器核心技术
 
 * 容器平台技术
 
